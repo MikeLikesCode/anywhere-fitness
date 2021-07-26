@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
 // import Login from "./components/Login";
 import EventsForm from './components/events-form'
 import Dashboard from "./components/dashboard";
@@ -57,7 +57,6 @@ function App() {
           </div>
         </Header> 
 
-        <Route exact path="/home" component={Home} />
 
         <Route exact path='/login' component={null} />
 
@@ -67,8 +66,13 @@ function App() {
 
         <Route exact path='/instructorDashboard' component={Dashboard} />
 
-        <Route exact path='/testing' component={EventsForm} />
+        <Route exact path="/home" component={Home} />
 
+        {/* <Route exact path='/testing' component={EventForm} /> */}
+
+        <Route path="/">
+          <Redirect to="/home"/>
+        </Route>
       </div>
     </Router>
   );
