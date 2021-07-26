@@ -9,6 +9,7 @@ import Home from './components/home.js';
 // import EventForm from './components/event-form'
 import styled from 'styled-components'
 import  "./App.css";
+import SignIn from "./components/SignIn";
 
 function App() {
 
@@ -58,7 +59,7 @@ function App() {
         </Header> 
 
 
-        <Route exact path='/login' component={null} />
+        <Route exact path='/login' component={SignIn} />
 
         <Route exact path='/signUp' component={null} />
 
