@@ -49,7 +49,6 @@ function App() {
 
         <Route exact path='/instructorDashboard' component={Dashboard} />
 
-        {/* <Route exact path='/testing' component={EventForm} /> */}
       </div>
     </Router>
   );
