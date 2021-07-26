@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import Login from "./components/Login";
+import EventsForm from './components/events-form'
 import Dashboard from "./components/dashboard";
 // import PrivateRoute from "./components/PrivateRoute";
 import { axiosWithAuth } from "./helpers/axiosWithAuth";
@@ -46,6 +47,8 @@ function App() {
         <Route exact path='/dashboard' component={Dashboard} />
 
         <Route exact path='/instructorDashboard' component={Dashboard} />
+        
+        <Route exact path='/testing' component={EventsForm} />
       </div>
     </Router>
   );
