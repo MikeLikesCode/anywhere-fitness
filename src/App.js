@@ -5,6 +5,8 @@ import Dashboard from "./components/dashboard";
 // import PrivateRoute from "./components/PrivateRoute";
 import { axiosWithAuth } from "./helpers/axiosWithAuth";
 import Home from './components/home.js';
+// import EventForm from './components/event-form'
+import  "./App.css";
 
 function App() {
 
@@ -46,6 +48,8 @@ function App() {
         <Route exact path='/dashboard' component={Dashboard} />
 
         <Route exact path='/instructorDashboard' component={Dashboard} />
+
+        {/* <Route exact path='/testing' component={EventForm} /> */}
       </div>
     </Router>
   );
