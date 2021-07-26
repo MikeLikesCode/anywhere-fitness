@@ -1,36 +1,57 @@
 import React,{useState} from 'react'
+import {useHistory} from 'react-router'
+import axios from 'axios'
 
 export default function SignIn() {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    
 
-    function handleSubmit(e) {
-        e.preventDefault();
-      }
+    const [userAccount, setUserAccount] = useState({
+        userId: '',
+        password:'',
+        remember:'off'
+    })
 
-      function validateForm() {
-        return username.length > 0 && password.length > 0;
-      }
+    const history = useHistory()
+
+    const onChange=evt=>{
+        evt.persist()
+        let newUserAccount = {...userAccount, [evt.target.name]: evt.target.value }
+        setUserAccount(newUserAccount)
+    }
+
+    const handleSubmit = async evt =>{
+        evt.preventDefault()
+        try {
+            await axios.post('', userAccount)
+            history.push("/dashboard")
+        } catch(err){
+            console.log(err)
+        }
+            
+    }
+
 
     return (
         <form onSubmit={handleSubmit}>
             <h3>Sign Into Your Account</h3>
+
             <div id='login'>
+
                 <div id='username'>
                     <label>Username: </label>
-                        <input type='text' name='username' onChange={(e)=> setUsername(e.target.value)} required/>
+                        <input type='text' name='userId' placeholder='UserID' onChange={onChange} required />
                 </div>
 
                 <div id='password'>
                     <label for='password'>Password: </label>
-                        <input type='password' name='password' onChange={(e)=> setPassword(e.target.value)} required/>
+                        <input type='password' name='password' placeholder='Password' onChange={onChange} required />
                 </div>
 
                 <div id='logInButton'>
-                    <button type='submit' disabled={!validateForm}> Log In </button>
+                    <button type='submit' > Log In </button>
                     <br/>
                     <label>
-                        <input type='checkbox' name='remember' />Remember Me
+                        <input type='checkbox' name='remember' onChange={onChange} />Remember Me
                     </label>
                 </div>
             </div>
