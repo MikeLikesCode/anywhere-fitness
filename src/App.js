@@ -1,14 +1,32 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import Login from "./components/Login";
+import EventsForm from './components/events-form'
 import Dashboard from "./components/dashboard";
 // import PrivateRoute from "./components/PrivateRoute";
 import { axiosWithAuth } from "./helpers/axiosWithAuth";
 import Home from './components/home.js';
 // import EventForm from './components/event-form'
+import styled from 'styled-components'
 import  "./App.css";
 
 function App() {
+
+  const Header = styled.div`
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 1vh 4vw;
+    background-color:#1a1f29;
+    color:white;
+    margin-bottom: 5px;
+
+    h1{
+      margin:0;
+      font-size: 1.4rem;
+      padding: 1vh 0;
+    }
+  `
 
   const logout = () => {
     // axiosWithAuth()
@@ -32,12 +50,12 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header>
-          Anywhere Fitness!
+        <Header>
+          <h1>Anywhere Fitness!</h1>
           <div data-testid="logoutButton" className='logout'>
             {localStorage.getItem('token') ? <Link onClick={logout} to='/home'>logout</Link> : <div></div>}
           </div>
-        </header> 
+        </Header> 
 
         <Route exact path="/home" component={Home} />
 
@@ -48,6 +66,8 @@ function App() {
         <Route exact path='/dashboard' component={Dashboard} />
 
         <Route exact path='/instructorDashboard' component={Dashboard} />
+
+        <Route exact path='/testing' component={EventsForm} />
 
       </div>
     </Router>
