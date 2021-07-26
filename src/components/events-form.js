@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const FormContainer = styled.div`
   width: 40%;
-  margin: 10vh auto;
+  margin: 6vh auto;
 `;
 
 const Form = styled.form`
