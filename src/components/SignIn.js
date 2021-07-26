@@ -4,11 +4,16 @@ export default function SignIn() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    
+    function handleSubmit(e) {
+        e.preventDefault();
+      }
 
+      function validateForm() {
+        return username.length > 0 && password.length > 0;
+      }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <h3>Sign Into Your Account</h3>
             <div id='login'>
                 <div id='username'>
@@ -22,7 +27,7 @@ export default function SignIn() {
                 </div>
 
                 <div id='logInButton'>
-                    <button > Log In </button>
+                    <button type='submit' disabled={!validateForm}> Log In </button>
                     <br/>
                     <label>
                         <input type='checkbox' name='remember' />Remember Me
