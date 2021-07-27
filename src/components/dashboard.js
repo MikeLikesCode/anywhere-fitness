@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import EventPanel from './eventPanel';
+import EventsForm from './events-form';
 
 function Dashboard(){
     const [isHidden, setIsHidden] =useState(true);
@@ -10,12 +11,14 @@ function Dashboard(){
 		setIsHidden(!isHidden)
 		document.querySelector('.event-form').classList.toggle('hidden')
         document.querySelector('.add-cta').classList.toggle('hidden')
+        document.querySelector('.create-event').classList.toggle('hidden')
 	}
 
     function cancelForm(){
 		setIsHidden(true)
 		document.querySelector('.event-form').classList.add('hidden')
         document.querySelector('.add-cta').classList.remove('hidden')
+        document.querySelector('.create-event').classList.remove('hidden')
 	}
 
 
@@ -26,9 +29,9 @@ function Dashboard(){
                 <div className='add-cta'>
                     <h3>Add a new event?</h3>
                 </div>
-                <button onClick={toggleForm}>Create Event!</button>
+                <button className='create-event' onClick={toggleForm}>Create Event!</button>
                 <div className='event-form hidden'>
-                    Testing Form
+                    <EventsForm />
                     <button onClick={cancelForm}>Cancel</button>
                 </div>
             </div>
