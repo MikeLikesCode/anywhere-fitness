@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import  "./App.css";
 import SignIn from "./components/SignIn";
 
+
 function App() {
 
   const Header = styled.div`
@@ -45,7 +46,6 @@ function App() {
     //   window.location.href = "/login";
     // })
   };
-
 
 
   return (
