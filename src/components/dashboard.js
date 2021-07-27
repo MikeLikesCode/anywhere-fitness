@@ -21,6 +21,14 @@ function Dashboard(){
         document.querySelector('.create-event').classList.remove('hidden')
 	}
 
+    function instructor(){
+        if( localStorage.getItem('role') === 2){
+            document.querySelector('.add-event').classList.add('hidden')
+        }
+    }
+
+    instructor();
+
 
     return(
         <div className='dashboard'>
