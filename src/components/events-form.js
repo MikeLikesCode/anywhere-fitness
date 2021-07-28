@@ -104,6 +104,7 @@ export default function EventsForm(props) {
             type="text"
             name="eventName"
             onChange={onChange}
+            value={formValues.eventName}
           />
         </InputContainer>
 
