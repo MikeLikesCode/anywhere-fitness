@@ -5,7 +5,32 @@ import EventsForm from './events-form';
 function Dashboard(){
     const [isHidden, setIsHidden] =useState(true);
 
-    const events = ['swimming', 'weight lifting', 'cardio']
+    const events = [
+        {
+            eventName: 'swimming',
+            classSize: 10,
+            remainingSeats: 10,
+            startTime: "7:00 A.M",
+            intensityLevel: "Beginner",
+            eventLocation: "Community Pool"
+        },
+        {
+            eventName: 'weight lifting',
+            classSize: 5,
+            remainingSeats: 5,
+            startTime: "11:00 A.M",
+            intensityLevel: "intermediate",
+            eventLocation: "Vasa Gym"
+        },
+        {
+            eventName: 'Yoga',
+            classSize: 35,
+            remainingSeats: 35,
+            startTime: "5:00 A.M",
+            intensityLevel: "Advanced",
+            eventLocation: 'Park'
+        }
+    ]
 
     function toggleForm(){
 		setIsHidden(!isHidden)

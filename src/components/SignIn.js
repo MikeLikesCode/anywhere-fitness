@@ -8,7 +8,8 @@ export default function SignIn() {
     const [userAccount, setUserAccount] = useState({
         userId: '',
         password:'',
-        remember:'off'
+        remember:'off',
+        error: ''
     })
 
     const history = useHistory()
@@ -19,14 +20,32 @@ export default function SignIn() {
         setUserAccount(newUserAccount)
     }
 
-    const handleSubmit = async evt =>{
+    const handleSubmit = evt =>{
         evt.preventDefault()
-        try {
-            await axios.post('', userAccount)
-            history.push("/dashboard")
-        } catch(err){
-            console.log(err)
-        }
+        setUserAccount({...userAccount, error: ''})
+        axios
+            .post('https://anytime-fitness-unit4.herokuapp.com/login', userAccount)
+            .then(res => {
+                localStorage.setItem('token', res.data.payload);
+                history.push("/dashboard")
+            })
+            .catch(err => {
+                setUserAccount({
+                    ...userAccount,
+                    error: 'Uh oh... wrong username/password. Please try again. But right this time.' 
+                })
+                
+            })
+            
+            // Testing API
+            // axios
+            //     .get('https://anytime-fitness-unit4.herokuapp.com/users')
+            //     .then(res => {
+            //         console.log(res.data)
+            //     })
+            //     .catch(err => {
+            //         console.log(err)
+            //     })
             
     }
 
@@ -36,7 +55,9 @@ export default function SignIn() {
             <h3>Sign Into Your Account</h3>
 
             <div id='login'>
-
+                <div className='errorMessage'>
+                    <h3>{userAccount.error}</h3>
+                </div>
                 <div id='username'>
                     <label>Username: </label>
                         <input type='text' name='userId' placeholder='UserID' onChange={onChange} required />
