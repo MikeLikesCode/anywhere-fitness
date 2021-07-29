@@ -71,6 +71,7 @@ function App() {
                 </div>
                 <Link to='/login'><LoggedLink>Log in</LoggedLink></Link>
                 <Link to='/signup'><LoggedLink>Create Account</LoggedLink></Link>
+                <Link to='/dashboard'>Dashboard</Link>
         </Header> 
 
 
