@@ -98,14 +98,17 @@ export default function SignIn() {
     setUserAccount(newUserAccount);
   };
 
-  const handleSubmit = async (evt) => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    try {
-      await axios.post("", userAccount);
-      history.push("/dashboard");
-    } catch (err) {
-      console.log(err);
-    }
+    axios
+        .post("https://anytime-fitness-unit4.herokuapp.com/login", userAccount)
+        .then(res => {
+            console.log('submit', res.data)
+            // history.push("/dashboard");
+        })
+        .catch ((err)=>{
+            console.log('submit', err);
+        })
   };
 
   useEffect(() => {
