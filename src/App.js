@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom
 // import Login from "./components/Login";
 import EventsForm from './components/events-form'
 import Dashboard from "./components/dashboard";
-// import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 import { axiosWithAuth } from "./helpers/axiosWithAuth";
 import Home from './components/home.js';
 // import EventForm from './components/event-form'
@@ -64,13 +64,9 @@ function App() {
 
         <Route exact path='/signUp' component={SignUp} />
 
-        <Route exact path='/dashboard' component={Dashboard} />
-
-        <Route exact path='/instructorDashboard' component={Dashboard} />
+        <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
         <Route exact path="/home" component={Home} />
-
-        {/* <Route exact path='/testing' component={EventForm} /> */}
 
         <Route path="/">
           <Redirect to="/home"/>

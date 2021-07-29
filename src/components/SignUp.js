@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
+import { useHistory } from "react-router";
 import FormSchema from "../validation/signUpValidation";
 import styled from "styled-components";
 import axios from 'axios'
@@ -77,6 +78,8 @@ function SignUp() {
   const [disabled, setDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
+  const history = useHistory();
+
   const validate = (name, value) => {
     yup
       .reach(FormSchema, name)
@@ -97,9 +100,9 @@ function SignUp() {
     axios
         .post("https://anytime-fitness-unit4.herokuapp.com/register", formValues)
         .then(res => {
-            console.log('submit', res.data)
-            
-            // history.push("/dashboard");
+            console.log('submit', res.data.token)
+            localStorage.setItem('token', res.data.token);
+            history.push("/dashboard")
         })
         .catch ((err)=>{
             console.log('submit', err);

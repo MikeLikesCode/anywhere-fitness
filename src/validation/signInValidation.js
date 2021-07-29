@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 const FormSchema = yup.object().shape({
-    email: yup
+    username: yup
         .string()
         .email("Must be a valid email address")
         .required("Email address is required"),
