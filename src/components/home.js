@@ -10,7 +10,7 @@ const Home = () =>{
             </div>
             <Link to='/login'>Log in</Link>
             <br/>
-            <Link to='/signup'>Create Accout</Link>
+            <Link to='/signup'>Create Account</Link>
             <h3>Only for testing Dashboard</h3>
             <Link to='/dashboard'>Dashboard</Link>
         </div>
