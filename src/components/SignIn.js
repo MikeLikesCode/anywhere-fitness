@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import FormSchema from "../validation/signInValidation";
 import * as yup from "yup";
 import styled from "styled-components";
+import LoggedInContext from "../contexts/LoggedInContext";
+
 
 const FormContainer = styled.div`
   width: 40%;
@@ -68,6 +70,7 @@ const initialFormErrors = {
 };
 
 export default function SignIn() {
+    const { loggedIn, setLoggedIn} = useContext(LoggedInContext)
 
   const [userAccount, setUserAccount] = useState({
     username: "",
@@ -103,15 +106,19 @@ export default function SignIn() {
         error: ''
     })
   };
+    
+//   console.log(props)
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     axios
         .post("https://anytime-fitness-unit4.herokuapp.com/login", userAccount)
         .then(res => {
-            console.log('submit', res.data.token)
+            // console.log('submit', res.data.token)
             localStorage.setItem('token', res.data.token);
             history.push("/dashboard");
+            setLoggedIn(true)
+            
         })
         .catch ((err)=>{
             setWrongCredentials({

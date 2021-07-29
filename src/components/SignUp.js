@@ -73,7 +73,7 @@ const initialFormErrors = {
   password: "",
 };
 
-function SignUp() {
+function SignUp(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [disabled, setDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -100,8 +100,9 @@ function SignUp() {
     axios
         .post("https://anytime-fitness-unit4.herokuapp.com/register", formValues)
         .then(res => {
-            console.log('submit', res.data.token)
+            // console.log('submit', res.data.token)
             localStorage.setItem('token', res.data.token);
+            props.setLoggedIn(true)
             history.push("/dashboard")
         })
         .catch ((err)=>{
