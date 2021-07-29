@@ -21,7 +21,7 @@ border: .4em double ${props=>props.theme.headerColor};
 
 
 function EventPanel(props){
-console.log(props.event)
+// console.log(props.event)
     return(
         <div className='event-panel'>
             <Event>
