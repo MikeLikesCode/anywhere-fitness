@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import FormSchema from "../validation/signUpValidation";
 import styled from "styled-components";
+import axios from 'axios'
 
 const FormContainer = styled.div`
   width: 40%;
@@ -61,13 +62,13 @@ const SubmitButton = styled.button`
 `;
 
 const initialFormValues = {
-  name: "",
-  email: "",
-  type: "client",
+  username: "",
+  password: '',
+  role_name: "client",
 };
 
 const initialFormErrors = {
-  email: "",
+  username: "",
   password: "",
 };
 
@@ -90,11 +91,20 @@ function SignUp() {
     validate(name, value);
   }
 
-  function onSubmit(event) {
-    event.preventDefault();
-    setFormValues(initialFormValues);
-    console.log(formValues);
-  }
+
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    axios
+        .post("https://anytime-fitness-unit4.herokuapp.com/register", formValues)
+        .then(res => {
+            console.log('submit', res.data)
+            
+            // history.push("/dashboard");
+        })
+        .catch ((err)=>{
+            console.log('submit', err);
+        })
+  };
 
   useEffect(() => {
     FormSchema.isValid(formValues).then((valid) =>{
@@ -105,25 +115,15 @@ function SignUp() {
   return (
     <FormContainer>
       <Form onSubmit={onSubmit}>
-        <div>{formErrors.email}</div>
+        <div>{formErrors.username}</div>
         <div>{formErrors.password}</div>
-        <InputContainer>
-          <label> Name </label>
-          <input
-            type="text"
-            required="required"
-            value={formValues.name}
-            onChange={onChange}
-            name="name"
-          />
-        </InputContainer>
 
         <InputContainer>
-          <label>Email </label>
+          <label>Username </label>
           <input
             type="email"
-            name="email"
-            value={formValues.email}
+            name="username"
+            value={formValues.username}
             onChange={onChange}
             required="required"
           />
@@ -140,7 +140,7 @@ function SignUp() {
           />
         </InputContainer>
 
-        {formValues.type !== "client" ? (
+        {formValues.role_name !== "client" ? (
           <InputContainer>
             <label>Auth Code </label>
             <input type="text" onChange={onChange} name="authCode" />
@@ -152,17 +152,17 @@ function SignUp() {
           <input
             value="client"
             type="radio"
-            name="type"
+            name="role_name"
             onChange={onChange}
-            checked={formValues.type === "client" ? true : false}
+            checked={formValues.role_name === "client" ? true : false}
           />
           <label>Instructor</label>
           <input
             value="instructor"
             type="radio"
-            name="type"
+            name="role_name"
             onChange={onChange}
-            checked={formValues.type === "instructor" ? true : false}
+            checked={formValues.role_name === "instructor" ? true : false}
           />
         </div>
         <SubmitButton type="submit" disabled={disabled}>

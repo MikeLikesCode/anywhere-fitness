@@ -1,8 +1,7 @@
 import * as yup from "yup";
 
 const FormSchema = yup.object().shape({
-  name: yup.string().trim().required("You must enter in your name!"),
-  email: yup
+  username: yup
     .string()
     .email("Must be a valid email address")
     .required("Email address is required"),
@@ -11,15 +10,15 @@ const FormSchema = yup.object().shape({
     .trim()
     .required("Password is required!")
     .min(5, "Password must be greater than 5 characters!"),
-  type: yup
+  role_name: yup
   .string()
   .oneOf(["client", "instructor"]),
   authCode: yup
   .string()
   .trim()
   .oneOf(["instructor"])
-  .when('type', {
-      is: (type) => type === "instructor",
+  .when('role_name', {
+      is: (role_name) => role_name === "instructor",
       then: yup.string()
       .required('Field is required')
   }),
