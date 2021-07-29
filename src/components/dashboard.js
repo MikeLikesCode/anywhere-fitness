@@ -8,27 +8,33 @@ function Dashboard(){
     const events = [
         {
             eventName: 'swimming',
-            classSize: 10,
+            eventType: 'Cardio',
+            maxClassSize: 10,
             remainingSeats: 10,
-            startTime: "7:00 A.M",
+            startTime: "7:00 ",
+            duration: "8:00 ",
             intensityLevel: "Beginner",
             eventLocation: "Community Pool"
         },
         {
             eventName: 'weight lifting',
-            classSize: 5,
+            eventType: 'Weight Lifting',
+            maxClassSize: 5,
             remainingSeats: 5,
-            startTime: "11:00 A.M",
+            startTime: "11:00 ",
             intensityLevel: "intermediate",
-            eventLocation: "Vasa Gym"
+            eventLocation: "Vasa Gym",
+            duration: "12:30",
         },
         {
             eventName: 'Yoga',
-            classSize: 35,
+            eventType: 'Yoga',
+            maxClassSize: 35,
             remainingSeats: 35,
-            startTime: "5:00 A.M",
+            startTime: "13:00 ",
             intensityLevel: "Advanced",
-            eventLocation: 'Park'
+            eventLocation: 'Park',
+            duration: "15:30 ",
         }
     ]
 

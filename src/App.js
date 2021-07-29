@@ -10,6 +10,8 @@ import Home from './components/home.js';
 import styled from 'styled-components'
 import  "./App.css";
 import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+
 
 function App() {
 
@@ -47,7 +49,6 @@ function App() {
   };
 
 
-
   return (
     <Router>
       <div className="App">
@@ -61,7 +62,7 @@ function App() {
 
         <Route exact path='/login' component={SignIn} />
 
-        <Route exact path='/signUp' component={null} />
+        <Route exact path='/signUp' component={SignUp} />
 
         <Route exact path='/dashboard' component={Dashboard} />
 
