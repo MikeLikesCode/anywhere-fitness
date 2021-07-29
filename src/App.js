@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom
 // import Login from "./components/Login";
 import EventsForm from './components/events-form'
 import Dashboard from "./components/dashboard";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./helpers/PrivateRoute";
 import { axiosWithAuth } from "./helpers/axiosWithAuth";
 import Home from './components/home.js';
 // import EventForm from './components/event-form'
