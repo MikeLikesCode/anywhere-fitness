@@ -120,6 +120,9 @@ export default function EventsForm(props) {
             <option value="Yoga">Yoga</option>
             <option value="Zumba">Zumba</option>
             <option value="Cycling">Cycling</option>
+            <option value="Cardio">Cardio</option>
+            <option value="Other">Other</option>
+
           </select>
         </InputContainer>
 
