@@ -31,6 +31,16 @@ function App() {
     }
   `
 
+  const LoggedLink = styled.div`
+  background-color: ${props=>props.theme.secondaryColor};
+  padding-left:1rem;
+  padding-right:1rem;
+  padding-top:.25rem;
+  padding-bottom:.25rem;
+  color: ${props=>props.theme.white};
+  border-radius: 20rem;
+  `
+
   const logout = () => {
     // axiosWithAuth()
     // .post('/logout')
@@ -57,6 +67,10 @@ function App() {
           <div data-testid="logoutButton" className='logout'>
             {localStorage.getItem('token') ? <Link onClick={logout} to='/home'>logout</Link> : <div></div>}
           </div>
+          <div className='cta'>
+                </div>
+                <Link to='/login'><LoggedLink>Log in</LoggedLink></Link>
+                <Link to='/signup'><LoggedLink>Create Account</LoggedLink></Link>
         </Header> 
 
 

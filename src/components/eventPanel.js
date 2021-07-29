@@ -8,6 +8,7 @@ width:40%;
 margin: 0 auto;
 margin-top:1.5rem;
 background-color: ${props=>props.theme.headerColor};
+padding-bottom:1rem;
 `
 
 const EventHeader= styled.h2`
@@ -29,6 +30,7 @@ console.log(props.event)
                 <h4>Intensity : {props.event.intensityLevel} </h4>
                 <p>{props.event.maxClassSize} spots in the event at {props.event.eventLocation}</p>
                 <p>Starts at {props.event.startTime} until {props.event.duration}</p>
+                <button>Sign up</button>
             </Event>
         </div>
     )

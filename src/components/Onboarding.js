@@ -7,7 +7,7 @@ export default function Onboarding() {
                 <h1>Congratulations! Your First Class Awaits!</h1>
                 <h3>Follow the following steps to get your first class going.</h3>
                 <p>If you wish to skip straight into your dashboard, use the skip button off to the side.</p>
-                <img></img>
+                <button>Skip</button>
             </div>
             <div class='stepOne'>
                 <h2>Step One :</h2>
