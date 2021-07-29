@@ -63,16 +63,19 @@ const SubmitButton = styled.button`
 `;
 
 const initialFormErrors = {
-  email: "",
+  username: "",
   password: "",
 };
 
 export default function SignIn() {
+
   const [userAccount, setUserAccount] = useState({
-    email: "",
+    username: "",
     password: "",
-    remember: "off",
   });
+  const [wrongCredentials, setWrongCredentials] = useState({
+      error: ''
+  })
 
   const [disabled, setDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -96,6 +99,9 @@ export default function SignIn() {
     };
     validate(name, value);
     setUserAccount(newUserAccount);
+    setWrongCredentials({
+        error: ''
+    })
   };
 
   const handleSubmit = (evt) => {
@@ -103,11 +109,14 @@ export default function SignIn() {
     axios
         .post("https://anytime-fitness-unit4.herokuapp.com/login", userAccount)
         .then(res => {
-            console.log('submit', res.data)
-            // history.push("/dashboard");
+            console.log('submit', res.data.token)
+            localStorage.setItem('token', res.data.token);
+            history.push("/dashboard");
         })
         .catch ((err)=>{
-            console.log('submit', err);
+            setWrongCredentials({
+                error: 'Uh oh... wrong username/password. Please try again. But right this time.'
+            })
         })
   };
 
@@ -122,13 +131,14 @@ export default function SignIn() {
       <Form onSubmit={handleSubmit}>
         <h3>Sign Into Your Account</h3>
 
-        <div>{formErrors.userId}</div>
+        <div>{formErrors.username}</div>
         <div>{formErrors.password}</div>
+        <div>{wrongCredentials.error}</div>
 
         <div id="login">
           <InputContainer>
             <label>Email: </label>
-            <input type="email" name="email" onChange={onChange} required />
+            <input type="email" name="username" onChange={onChange} required />
           </InputContainer>
 
           <InputContainer>
@@ -141,10 +151,6 @@ export default function SignIn() {
             />
           </InputContainer>
 
-          <label>
-            <input type="checkbox" name="remember" onChange={onChange} />
-            Remember Me
-          </label>
           <div id="logInButton">
             <SubmitButton type="submit" disabled={disabled}> Log In </SubmitButton>
           </div>
