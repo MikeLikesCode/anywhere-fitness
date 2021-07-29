@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useHistory } from "react-router";
 import styled from 'styled-components'
@@ -11,16 +10,17 @@ import Submit from '../assets/Submit.png'
 import Workout3 from '../assets/workout3.jpg'
 
 export default function Onboarding() {
-  const history = useHistory();
-  const handleSubmit = () => {
-        history.push("/dashboard");
- const Steps = styled.div`
- display:flex;
-justify-content: center;
- img{
-     height:40vh;
- }
- `
+    const history = useHistory();
+    const handleSubmit = () => {
+            history.push("/dashboard");
+    }
+    const Steps = styled.div`
+        display:flex;
+        justify-content: center;
+        img{
+            height:40vh;
+        }
+    `
 
     return (
         <div class='onBoarding'>
@@ -30,8 +30,8 @@ justify-content: center;
                 <p>If you wish to skip straight into your dashboard, use the skip button off to the side.</p>
                 <button onClick={handleSubmit} >Skip</button>
             </div>
-                <h2>Step One :</h2>
-                <Steps>
+            <h2>Step One :</h2>
+            <Steps>
                 <p>Upon signing into your dashboard, you will see a selection of ongoing, and future classes.</p>
                 <img src={Location} alt='Find an event to your liking.'/>
             </Steps>
@@ -44,10 +44,10 @@ justify-content: center;
             <Steps>
                 <p>Upon signing up for a class, you will be placed into the Instructors class, which you can easily Un-RSVP for by simply clicking the cancel button that replaced the RSVP button.</p>
 
-            <button onClick={handleSubmit} >Go To Dashboard!</button>
 
                 <img src={Events}/>
             </Steps>
+            <button onClick={handleSubmit} >Go To Dashboard!</button>
             <div class='Instructor'>
                 <h1>Instructors Starting Their First Class!</h1>
                 <h2>Step One :</h2>   
