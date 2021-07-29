@@ -1,4 +1,6 @@
-import React from 'react'
+
+import React from 'react';
+import { useHistory } from "react-router";
 import styled from 'styled-components'
 import Location from '../assets/Location.png'
 import SignUp from '../assets/SignUp.png'
@@ -9,7 +11,9 @@ import Submit from '../assets/Submit.png'
 import Workout3 from '../assets/workout3.jpg'
 
 export default function Onboarding() {
-
+  const history = useHistory();
+  const handleSubmit = () => {
+        history.push("/dashboard");
  const Steps = styled.div`
  display:flex;
 justify-content: center;
@@ -18,14 +22,13 @@ justify-content: center;
  }
  `
 
-
     return (
         <div class='onBoarding'>
             <div class='congrats'>
                 <h1>Congratulations! Your First Class Awaits!</h1>
                 <h3>Do the following steps to get your first class going.</h3>
                 <p>If you wish to skip straight into your dashboard, use the skip button off to the side.</p>
-                <button>Skip</button>
+                <button onClick={handleSubmit} >Skip</button>
             </div>
                 <h2>Step One :</h2>
                 <Steps>
@@ -40,6 +43,9 @@ justify-content: center;
             <h2>Step Three :</h2>    
             <Steps>
                 <p>Upon signing up for a class, you will be placed into the Instructors class, which you can easily Un-RSVP for by simply clicking the cancel button that replaced the RSVP button.</p>
+
+            <button onClick={handleSubmit} >Go To Dashboard!</button>
+
                 <img src={Events}/>
             </Steps>
             <div class='Instructor'>
@@ -63,6 +69,7 @@ justify-content: center;
                 </Steps>
                 <h2>Congratulations! Your first class will start at the time you chose. Don't forget to stretch, hydrate, and get to know you clients!</h2>
                 <img src={Workout3}/>
+                <button onClick={handleSubmit} >Go To Dashboard!</button>
             </div>
         </div>
         

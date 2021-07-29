@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as yup from "yup";
 import { useHistory } from "react-router";
 import FormSchema from "../validation/signUpValidation";
 import styled from "styled-components";
 import axios from 'axios'
+import LoggedInContext from "../contexts/LoggedInContext";
 
 const FormContainer = styled.div`
   width: 40%;
@@ -77,7 +78,7 @@ function SignUp(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [disabled, setDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-
+  const {setLoggedIn} = useContext(LoggedInContext)
   const history = useHistory();
 
   const validate = (name, value) => {
@@ -102,8 +103,8 @@ function SignUp(props) {
         .then(res => {
             // console.log('submit', res.data.token)
             localStorage.setItem('token', res.data.token);
-            props.setLoggedIn(true)
-            history.push("/dashboard")
+            history.push("/tutorial")
+            setLoggedIn(true)
         })
         .catch ((err)=>{
             console.log('submit', err);
