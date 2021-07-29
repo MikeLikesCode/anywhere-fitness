@@ -1,13 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { useHistory } from "react-router";
+
 
 export default function Onboarding() {
+    const history = useHistory();
+    const handleSubmit = () => {
+        history.push("/dashboard");
+    }
+
     return (
         <div class='onBoarding'>
             <div class='congrats'>
                 <h1>Congratulations! Your First Class Awaits!</h1>
                 <h3>Follow the following steps to get your first class going.</h3>
                 <p>If you wish to skip straight into your dashboard, use the skip button off to the side.</p>
-                <button>Skip</button>
+                <button onClick={handleSubmit} >Skip</button>
             </div>
             <div class='stepOne'>
                 <h2>Step One :</h2>
@@ -24,6 +31,7 @@ export default function Onboarding() {
                 <p>Upon signing up for a class, you will be placed into the Instructors class, which you can easily Un-RSVP for by simply clicking the cancel button that replaced the RSVP button.</p>
                 <img></img>
             </div>
+            <button onClick={handleSubmit} >Go To Dashboard!</button>
             <div class='Instructor'>
                 <h1>Instructors Starting Their First Class!</h1>
                 <div class='InstrStepOne'>
@@ -43,6 +51,7 @@ export default function Onboarding() {
                 </div>
                 <h2>Congratulations! Your first class will start at the time you chose. Don't forget to stretch, hydrate, and get to know you clients!</h2>
                 <img></img>
+                <button onClick={handleSubmit} >Go To Dashboard!</button>
             </div>
         </div>
         

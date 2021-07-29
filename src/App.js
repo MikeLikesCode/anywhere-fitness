@@ -63,7 +63,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <LoggedInContext.Provider value= {{loggedIn, setLoggedIn}}>
+        <LoggedInContext.Provider value= {{setLoggedIn}}>
           <Header>
             <h1>Anywhere Fitness!</h1>
               {loggedIn ? <Link onClick={logout} to='/home'><LogOut>Log Out</LogOut></Link> : 
@@ -83,6 +83,7 @@ function App() {
 
           <Route exact path="/home" component={Home} />
 
+          <Route exact path='/tutorial' component={Onboarding} />
 
           <Route path="/">
             <Redirect to="/home"/>

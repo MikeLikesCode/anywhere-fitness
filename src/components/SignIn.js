@@ -70,7 +70,7 @@ const initialFormErrors = {
 };
 
 export default function SignIn() {
-    const { loggedIn, setLoggedIn} = useContext(LoggedInContext)
+    const {setLoggedIn} = useContext(LoggedInContext)
 
   const [userAccount, setUserAccount] = useState({
     username: "",
@@ -118,6 +118,7 @@ export default function SignIn() {
             localStorage.setItem('token', res.data.token);
             history.push("/dashboard");
             setLoggedIn(true)
+            console.log(res.data)
             
         })
         .catch ((err)=>{
