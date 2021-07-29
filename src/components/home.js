@@ -2,6 +2,7 @@ import React from 'react';
 import Workout1 from '../assets/workout1.jpg'
 import styled from 'styled-components';
 import Workout2 from'../assets/workout2.jpg'
+import Onboarding from './Onboarding';
 
 const Home = () =>{
 
