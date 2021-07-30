@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import FormSchema from "../validation/signInValidation";
 import * as yup from "yup";
 import styled from "styled-components";
-import LoggedInContext from "../contexts/LoggedInContext";
 
 
 const FormContainer = styled.div`
@@ -70,8 +69,6 @@ const initialFormErrors = {
 };
 
 export default function SignIn() {
-    const {setLoggedIn} = useContext(LoggedInContext)
-
   const [userAccount, setUserAccount] = useState({
     username: "",
     password: "",
@@ -114,11 +111,8 @@ export default function SignIn() {
     axios
         .post("https://anytime-fitness-unit4.herokuapp.com/login", userAccount)
         .then(res => {
-            // console.log('submit', res.data.token)
             localStorage.setItem('token', res.data.token);
             history.push("/dashboard");
-            setLoggedIn(true)
-            console.log(res.data)
             
         })
         .catch ((err)=>{

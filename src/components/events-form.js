@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import axiosWithAuth from "../helpers/axiosWithAuth";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import ClassesContext from "../contexts/ClassesContext";
+import axios from 'axios'
 
 const FormContainer = styled.div`
   width: 40%;
@@ -60,39 +63,49 @@ const SubmitButton = styled.button`
 `;
 
 const initialFormValues = {
-  eventName: "",
-  eventType: "",
-  startTime: "",
+  name: "",
+  type: "",
+  start_time: "",
   duration: "",
-  intensityLevel: "",
-  eventLocation: "",
-  maxClassSize: 0,
+  intensity_level: "",
+  location: "",
+  max_size: 0,
+  date: '',
 };
 
-// const initialFormErrors = {
-//   eventName: "",
-//   eventType: "",
-//   startTime: "",
-//   duration: "",
-//   intensityLevel: "",
-//   eventLocation: "",
-//   maxClassSize: "",
-// };
 
 export default function EventsForm(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
-  // Set Form Errors once Validation is avaliable
-  //   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const {events, setEvents} = useContext(ClassesContext)
 
   function onChange(event) {
-    const { name, value } = event.target;
-    setFormValues({ ...formValues, [name]: value });
+    setFormValues({ ...formValues, [event.target.name]: event.target.value });
   }
+
 
   function onSubmit(event) {
     event.preventDefault();
+
+    // const fullFormValues = {
+    //   ...formValues,
+    //   number_registered: '0',
+
+    // }
+    
+    axios
+      .post(`https://anytime-fitness-unit4.herokuapp.com/classes`, formValues)
+      .then(res => {
+        console.log(res.data)
+        setEvents(
+          ...events,
+          res.data
+        )
+        props.setIsHidden(true)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     setFormValues(initialFormValues);
-    console.log(formValues);
   }
 
   return (
@@ -102,9 +115,9 @@ export default function EventsForm(props) {
           <label>Event Name</label>
           <input
             type="text"
-            name="eventName"
+            name="name"
             onChange={onChange}
-            value={formValues.eventName}
+            value={formValues.name}
           />
         </InputContainer>
 
@@ -112,8 +125,8 @@ export default function EventsForm(props) {
           <label>Event Type</label>
           <select
             onChange={onChange}
-            value={formValues.eventType}
-            name="eventType"
+            value={formValues.type}
+            name="type"
           >
             <option value="-- Select A Event --">-- Select A Event --</option>
             <option value="Weight Lifting">Weight Lifting</option>
@@ -127,19 +140,29 @@ export default function EventsForm(props) {
         </InputContainer>
 
         <InputContainer>
-          <label>Start Time</label>
-          <input
-            type="time"
-            name="startTime"
-            onChange={onChange}
-            value={formValues.startTime}
+          <label>Date  (example: Monday, July 1st) </label>
+          <input 
+            type='text' 
+            name='date' 
+            onChange={onChange} 
+            value={formValues.date} 
           />
         </InputContainer>
 
         <InputContainer>
-          <label>Duration </label>
+          <label>Start time? </label>
           <input
-            type="time"
+            type="text"
+            name="start_time"
+            onChange={onChange}
+            value={formValues.start_time}
+          />
+        </InputContainer>
+
+        <InputContainer>
+          <label>Duration (min/hours) </label>
+          <input
+            type="text"
             name="duration"
             onChange={onChange}
             value={formValues.duration}
@@ -149,9 +172,9 @@ export default function EventsForm(props) {
         <InputContainer>
           <label> Intensity Level </label>
           <select
-            name="intensityLevel"
+            name="intensity_level"
             onChange={onChange}
-            value={formValues.intensityLevel}
+            value={formValues.intensity_level}
           >
             <option value="-- Choose an Intensity --">
               {" "}
@@ -168,9 +191,9 @@ export default function EventsForm(props) {
           <label> Event Location </label>
           <input
             type="text"
-            name="eventLocation"
+            name="location"
             onChange={onChange}
-            value={formValues.eventLocation}
+            value={formValues.location}
           />
         </InputContainer>
 
@@ -179,13 +202,10 @@ export default function EventsForm(props) {
           <input
             type="number"
             onChange={onChange}
-            value={formValues.maxClassSize}
-            name="maxClassSize"
+            value={formValues.max_size}
+            name="max_size"
           />
         </InputContainer>
-
-        <label>Current Number of Registered Attendees</label>
-        <p>0</p>
 
         <SubmitButton type="submit"> Post Event </SubmitButton>
       </Form>

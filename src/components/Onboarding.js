@@ -45,7 +45,7 @@ export default function Onboarding() {
                 <p>Upon signing up for a class, you will be placed into the Instructors class, which you can easily Un-RSVP for by simply clicking the cancel button that replaced the RSVP button.</p>
 
 
-                <img src={Events}/>
+                <img src={Events} alt='events'/>
             </Steps>
             <button onClick={handleSubmit} >Go To Dashboard!</button>
             <div class='Instructor'>
@@ -53,22 +53,22 @@ export default function Onboarding() {
                 <h2>Step One :</h2>   
                 <Steps>    
                     <p>Locate the Create Event button.</p>
-                    <img src={CreateEvent}/>
+                    <img src={CreateEvent} alt='Create events'/>
                 </Steps>
                 
                 <h2>Step Two :</h2>
                 <Steps>
                     <p>Upon clicking the create event button, the event form will open up, allowing you to go through and fill out all the information pertaining to your class.</p>
-                    <img src={EventInfo}/>
+                    <img src={EventInfo} alt='events info'/>
                 </Steps>
                 
                 <h2>Step Three :</h2>    
                 <Steps>
                     <p>Once you finish adding all of your details to the class event, click the Post Event button.</p>
-                    <img src={Submit}/>
+                    <img src={Submit} alt='submit'/>
                 </Steps>
                 <h2>Congratulations! Your first class will start at the time you chose. Don't forget to stretch, hydrate, and get to know you clients!</h2>
-                <img src={Workout3}/>
+                <img src={Workout3} alt='workout'/>
                 <button onClick={handleSubmit} >Go To Dashboard!</button>
             </div>
         </div>
