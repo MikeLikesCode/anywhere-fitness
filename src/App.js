@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
 import Dashboard from "./components/dashboard";
 import PrivateRoute from "./helpers/PrivateRoute";
@@ -8,11 +8,9 @@ import  "./App.css";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Onboarding from './components/Onboarding.js'
-import LoggedInContext from "./contexts/LoggedInContext";
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
 
   const LogOut = styled.div`
     text-decoration: none;
@@ -54,7 +52,6 @@ function App() {
 
   const logout = () => {
       localStorage.removeItem('token');
-      setLoggedIn(false)
       window.location.href = "/login";
     
   };
@@ -63,10 +60,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <LoggedInContext.Provider value= {{setLoggedIn}}>
           <Header>
             <h1>Anywhere Fitness!</h1>
-              {loggedIn ? <Link onClick={logout} to='/home'><LogOut>Log Out</LogOut></Link> : 
+              {localStorage.getItem('token') ? <Link onClick={logout} to='/home'><LogOut>Log Out</LogOut></Link> : 
                 <div className='cta'>
                   <Link to='/login'><LoggedLink>Log in</LoggedLink></Link>
                   <Link to='/signup'><LoggedLink>Create Account</LoggedLink></Link>
@@ -88,7 +84,6 @@ function App() {
           <Route path="/">
             <Redirect to="/home"/>
           </Route>
-        </LoggedInContext.Provider>
       </div>
     </Router>
   );

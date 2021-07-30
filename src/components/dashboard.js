@@ -1,42 +1,13 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import axiosWithAuth from '../helpers/axiosWithAuth';
+import React, { useState, useEffect } from 'react';
 import EventPanel from './eventPanel';
 import EventsForm from './events-form';
+import ClassesContext from '../contexts/ClassesContext'
 
 function Dashboard(){
     const [isHidden, setIsHidden] =useState(true);
-
-    const events = [
-        {
-            eventName: 'swimming',
-            eventType: 'Cardio',
-            maxClassSize: 10,
-            remainingSeats: 10,
-            startTime: "7:00 ",
-            duration: "8:00 ",
-            intensityLevel: "Beginner",
-            eventLocation: "Community Pool"
-        },
-        {
-            eventName: 'weight lifting',
-            eventType: 'Weight Lifting',
-            maxClassSize: 5,
-            remainingSeats: 5,
-            startTime: "11:00 ",
-            intensityLevel: "intermediate",
-            eventLocation: "Vasa Gym",
-            duration: "12:30",
-        },
-        {
-            eventName: 'Yoga',
-            eventType: 'Yoga',
-            maxClassSize: 35,
-            remainingSeats: 35,
-            startTime: "13:00 ",
-            intensityLevel: "Advanced",
-            eventLocation: 'Park',
-            duration: "15:30 ",
-        }
-    ]
+    const [events, setEvents] = useState([])
 
     function toggleForm(){
 		setIsHidden(!isHidden)
@@ -52,37 +23,54 @@ function Dashboard(){
         document.querySelector('.create-event').classList.remove('hidden')
 	}
 
-    function instructor(){
+    const instructor = () => {
         if( localStorage.getItem('role') === 2){
             document.querySelector('.add-event').classList.add('hidden')
         }
     }
 
-    instructor();
+    
+    useEffect(() => {
+        instructor()
+        axiosWithAuth()
+            .get('/classes')
+            .then(res => {
+                setEvents(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, []);
+
+    
+
 
 
     return(
         <div className='dashboard'>
+            <ClassesContext.Provider value={{events, setEvents}} >
 
-            <div className='add-event'>
-                <div className='add-cta'>
-                    <h3>Add a new event?</h3>
+                <div className='add-event'>
+                    <div className='add-cta'>
+                        <h3>Add a new event?</h3>
+                    </div>
+                    <button className='create-event' onClick={toggleForm}>Create Event!</button>
+                    <div className='event-form hidden'>
+                        <EventsForm setIsHidden={setIsHidden} />
+                        <button onClick={cancelForm}>Cancel</button>
+                    </div>
                 </div>
-                <button className='create-event' onClick={toggleForm}>Create Event!</button>
-                <div className='event-form hidden'>
-                    <EventsForm />
-                    <button onClick={cancelForm}>Cancel</button>
+                <div className='choose'>
+                    <h2>Choose your event!</h2>
                 </div>
-            </div>
-            <div className='choose'>
-                <h2>Choose your event!</h2>
-            </div>
-            <div className='event-list'>
-                {events.map(item => {
-                   return <EventPanel key={Math.random()} event={item} />
-                })}
-            </div>
+                <div className='event-list'>
+                    {events.map(item => {
+                    return <EventPanel key={Math.random()} event={item} />
+                    })}
+                </div>
+            </ClassesContext.Provider>
         </div>
+
     )
 }
 

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, { useState} from 'react';
 import styled from 'styled-components';
 
 const Event=styled.h2`
@@ -22,7 +22,7 @@ border: .4em double ${props=>props.theme.headerColor};
 
 function EventPanel(props){
     const [rsvp, setRSVP] = useState(false);
-    const [spots, setSpots] = useState(props.event.maxClassSize)
+    const [spots, setSpots] = useState(props.event.max_size)
 
     const handleClick=()=>{
         rsvp ? setSpots(spots + 1) : setSpots(spots - 1);
@@ -32,11 +32,10 @@ function EventPanel(props){
     return(
         <div className='event-panel'>
             <Event>
-                <EventHeader>Event : {props.event.eventName} </EventHeader>
-                <h3>Type : {props.event.eventType} </h3>
-                <h4>Intensity : {props.event.intensityLevel} </h4>
-                <p>{spots} spots in the event at {props.event.eventLocation}</p>
-                <p>Starts at {props.event.startTime} until {props.event.duration}</p>
+                <EventHeader>Event : {props.event.name} </EventHeader>
+                <h3>Type : {props.event.type} </h3>
+                <p>{spots} Spots remaining</p>
+                <p>Starts at {props.event.start_time} for about {props.event.duration}</p>
                 <button onClick={handleClick} > {rsvp ? 'Cancel Reservation' : 'RSVP'} </button>
             </Event>
         </div>
