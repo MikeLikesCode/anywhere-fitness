@@ -139,12 +139,12 @@ export default function SignIn() {
 
         <div id="login">
           <InputContainer>
-            <label>Email: </label>
+            <label>Email</label>
             <input type="email" name="username" onChange={onChange} required />
           </InputContainer>
 
           <InputContainer>
-            <label htmlFor="password">Password: </label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               name="password"
