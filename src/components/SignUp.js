@@ -118,11 +118,14 @@ function SignUp(props) {
   return (
     <FormContainer>
       <Form onSubmit={onSubmit}>
+
+      <h3>Sign Up for Your Account</h3>
+
         <div>{formErrors.username}</div>
         <div>{formErrors.password}</div>
 
         <InputContainer>
-          <label>Username </label>
+          <label>Email</label>
           <input
             type="email"
             name="username"
@@ -133,7 +136,7 @@ function SignUp(props) {
         </InputContainer>
 
         <InputContainer>
-          <label>Password </label>
+          <label>Password</label>
           <input
             type="password"
             name="password"
