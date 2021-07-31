@@ -32,7 +32,6 @@ function Dashboard() {
   }
 
   const instructor = () => {
-      console.log(localStorage.getItem("role"))
     if (localStorage.getItem("role") === 2) {
       document.querySelector(".add-event").classList.add("hidden");
     }

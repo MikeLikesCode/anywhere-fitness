@@ -15,3 +15,8 @@ The Project can be installed by running `npm i`
 ### Default instructor credentials: <br/>
 `username: instructor@aol.com`<br/>
 `password: instructor`
+
+## Project Conditions
+
+We were not able to differentiate if client or instructor was logged in so we couldn't create a edit/delete as we would not want it 
+avaliable to the client. We also had trouble posting to the endpoint as well as deleting.
