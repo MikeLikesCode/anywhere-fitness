@@ -11,3 +11,7 @@ The Project can be installed by running `npm i`
 ### Default login credentials: <br/>
 `username: client@aol.com`<br/>
 `password: client`
+
+### Default instructor credentials: <br/>
+`username: instructor@aol.com`<br/>
+`password: instructor`
