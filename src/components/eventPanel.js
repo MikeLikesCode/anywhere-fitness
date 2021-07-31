@@ -36,7 +36,9 @@ function EventPanel(props){
                 <h3>Type : {props.event.type} </h3>
                 <p>{spots} Spots remaining</p>
                 <p>Starts at {props.event.start_time} for about {props.event.duration}</p>
-                <button onClick={handleClick} > {rsvp ? 'Cancel Reservation' : 'RSVP'} </button>
+                <button style={{marginRight:'5px'}} onClick={handleClick} > {rsvp ? 'Cancel Reservation' : 'RSVP'} </button>
+                {/* <button> Edit </button> This does not work as we have not been given the endpoints to do so and it shouldn't be avaliable to clients */}
+                {/* <button> Delete </button> This does not work as we have not been given the endpoints to do so and it shouldn't be avaliable to clients */}
             </Event>
         </div>
     )
