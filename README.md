@@ -18,5 +18,9 @@ The Project can be installed by running `npm i`
 
 ## Project Conditions
 
+Troubles on the frontend ---
+
 We were not able to differentiate if client or instructor was logged in so we couldn't create a edit/delete as we would not want it 
 avaliable to the client. We also had trouble posting to the endpoint as well as deleting.
+
+We also did not get a endpoint for a punchpass so we could not implement it into the project as well.
